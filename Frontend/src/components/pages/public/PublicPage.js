@@ -28,7 +28,7 @@ const PublicPage = () =>{
                             <NavLink className="nav-link" to="/signup">Rejestracja</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/statistics">Statystyka</NavLink>
+                            <NavLink className="nav-link" to="/statistics">Statystyki</NavLink>
                         </li>
                     </ul>
                 </div>

@@ -1,26 +1,22 @@
-.public-page-wrapper{
+.public-page-wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-
-.active{
-  color: white !important;
-}
-
-.public-page-wrapper > .navbar{
+.public-page-wrapper .navbar {
   background-color: #444C57;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
 }
-
-.public-page-wrapper > .navbar .nav-item{
+.public-page-wrapper .navbar .nav-item {
   margin: 0 2rem;
 }
-
-.public-page-wrapper > .navbar a{
+.public-page-wrapper .navbar a {
   color: #ff7570;
 }
-
-.public-page-wrapper > .navbar a:hover{
+.public-page-wrapper .navbar a:hover {
   color: #ff443d;
 }
+
+.active {
+  color: white !important;
+}/*# sourceMappingURL=PublicPage.css.map */

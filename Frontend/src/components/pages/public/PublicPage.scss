@@ -1,0 +1,29 @@
+.public-page-wrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .navbar{
+    background-color: #444C57;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px;
+
+    .nav-item{
+      margin: 0 2rem;
+    }
+
+    a{
+      color: #ff7570;
+
+      &:hover{
+        color: #ff443d;
+      }
+
+    }
+
+  }
+
+}
+
+.active{
+  color: white !important;
+}
