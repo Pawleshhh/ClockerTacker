@@ -1,11 +1,11 @@
 <?php
 
 require_once __DIR__ . '/bootstrap.php';
-require_once __DIR__ . '/src/Entry.php';
-require_once __DIR__ . '/src/Group.php';
-require_once __DIR__ . '/src/Project.php';
-require_once __DIR__ . '/src/User.php';
-require_once __DIR__ . '/src/Client.php';
+require_once __DIR__ . '/src/Model/Entry.php';
+require_once __DIR__ . '/src/Model/Group.php';
+require_once __DIR__ . '/src/Model/Project.php';
+require_once __DIR__ . '/src/Model/User.php';
+require_once __DIR__ . '/src/Model/Client.php';
 
 use Doctrine\Common\Collections\ArrayCollection;
 
