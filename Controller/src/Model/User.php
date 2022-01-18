@@ -22,11 +22,6 @@ class User
      */
     public $name;
 
-    /**
-     * @OneToMany(targetEntity="Group", mappedBy="user", cascade="all")
-     */
-    public $groups;
-
     public function __construct()
     {
         $this->groups = new ArrayCollection();
@@ -35,11 +30,6 @@ class User
     function set_name($name)
     {
         $this->name = $name;
-    }
-
-    function set_groups($groups)
-    {
-        $this->groups = $groups;
     }
 
 }

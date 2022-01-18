@@ -22,10 +22,10 @@ class Group
      */
     public $name;
 
-    /**
-     * @OneToOne(targetEntity="User", cascade="all")
-     */
-    public $admin;
+    // /**
+    //  * @OneToOne(targetEntity="User", cascade="all")
+    //  */
+    // public $admin;
 
     /**
      * @OneToMany(targetEntity="Project", mappedBy="group", cascade="all")
@@ -35,6 +35,7 @@ class Group
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     function set_name($name)
@@ -42,16 +43,16 @@ class Group
         $this->name = $name;
     }
 
-    function set_admin($admin)
-    {
-        $this->admin = $admin;
-    }
+    // function set_admin($admin)
+    // {
+    //     $this->admin = $admin;
+    // }
 
     function set_projects($projects)
     {
         $this->projects = $projects;
     }
-
+    
 }
 
 ?>
