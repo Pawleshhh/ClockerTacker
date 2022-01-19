@@ -1,6 +1,8 @@
 <?php
 
 require_once "vendor/autoload.php";
+require_once __DIR__ . "/User.php";
+require_once __DIR__ . "/Project.php";
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**

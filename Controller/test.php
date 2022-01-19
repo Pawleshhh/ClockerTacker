@@ -7,60 +7,70 @@ require_once __DIR__ . '/src/Model/Group.php';
 require_once __DIR__ . '/src/Model/Project.php';
 require_once __DIR__ . '/src/Model/User.php';
 require_once __DIR__ . '/src/Model/Client.php';
+require_once __DIR__ . '/src/Logic/CTManager.php';
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-$client = new Client();
-$client->set_name("Kramarczyk");
+$user = $em->getRepository(User::class)->find(47);
 
-$entry1 = new Entry();
-$entry1->set_description("Done");
+$manager = new CTManager($em, $user);
 
-$entriesCollection = new ArrayCollection([$entry1]);
+foreach($manager->GetGroups() as $grp)
+{
+    echo $grp->name;
+}
 
-$project1 = new Project();
-$project1->set_name("Clocker");
-$project1->set_decription("Nie chce tego robic");
-$project1->set_entries($entriesCollection);
-$project1->set_client($client);
+// $client = new Client();
+// $client->set_name("Kramarczyk");
 
-$projectsCollection = new ArrayCollection([$project1]);
+// $entry1 = new Entry();
+// $entry1->set_description("Done");
 
-$group1 = new Group();
-$group1->set_name("Aplikacje Internetowe");
-$group1->set_projects($projectsCollection);
-$project1->set_group($group1);
+// $entriesCollection = new ArrayCollection([$entry1]);
 
-$group2 = new Group();
-$group2->set_name("Ap2");
-$group2->set_projects($projectsCollection);
+// $project1 = new Project();
+// $project1->set_name("Clocker");
+// $project1->set_decription("Nie chce tego robic");
+// $project1->set_entries($entriesCollection);
+// $project1->set_client($client);
 
-$groupsCollection = new ArrayCollection([$group1]);
+// $projectsCollection = new ArrayCollection([$project1]);
 
-$user1 = new User();
-$user1->set_name("Piotr Buczynski");
-// $group1->set_admin($user1);
-$entry1->set_user($user1);
-$user2 = new User();
-$user2->set_name("Piotr Buczynski22222222");
-$user3 = new User();
-$user3->set_name("Piotr Buczynski3333333");
-$usersColl = new ArrayCollection([$user1, $user2]);
+// $group1 = new Group();
+// $group1->set_name("Aplikacje Internetowe");
+// $group1->set_projects($projectsCollection);
+// $project1->set_group($group1);
 
-$usrgrp1_1 = new UserGroupInfo();
-$usrgrp1_1->set_up($user1, $group1);
-$usrgrp2_2 = new UserGroupInfo();
-$usrgrp2_2->set_up($user2, $group2);
-$usrgrp2_1 = new UserGroupInfo();
-$usrgrp2_1->set_up($user2, $group1);
+// $group2 = new Group();
+// $group2->set_name("Ap2");
+// $group2->set_projects($projectsCollection);
 
-$usrgrp3_0 = new UserGroupInfo();
-$usrgrp3_0->set_up($user3, null);
+// $groupsCollection = new ArrayCollection([$group1]);
 
-$em->persist($usrgrp1_1);
-$em->persist($usrgrp2_2);
-$em->persist($usrgrp2_1);
-$em->persist($usrgrp3_0);
-$em->flush();
+// $user1 = new User();
+// $user1->set_name("Piotr Buczynski");
+// // $group1->set_admin($user1);
+// $entry1->set_user($user1);
+// $user2 = new User();
+// $user2->set_name("Piotr Buczynski22222222");
+// $user3 = new User();
+// $user3->set_name("Piotr Buczynski3333333");
+// $usersColl = new ArrayCollection([$user1, $user2]);
+
+// $usrgrp1_1 = new UserGroupInfo();
+// $usrgrp1_1->set_up($user1, $group1);
+// $usrgrp2_2 = new UserGroupInfo();
+// $usrgrp2_2->set_up($user2, $group2);
+// $usrgrp2_1 = new UserGroupInfo();
+// $usrgrp2_1->set_up($user2, $group1);
+
+// //$usrgrp3_0 = new UserGroupInfo();
+// //$usrgrp3_0->set_up($user3, null);
+
+// $em->persist($usrgrp1_1);
+// $em->persist($usrgrp2_2);
+// $em->persist($usrgrp2_1);
+// //$em->persist($usrgrp3_0);
+// $em->flush();
 
 ?>

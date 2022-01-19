@@ -7,10 +7,10 @@ use Doctrine\ORM\EntityManager;
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . '/src'));
 
 $conn = array(
-    'dbname' => 'clocker_db',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost',
+    'dbname' => 'pm44452',
+    'user' => 'pm44452',
+    'password' => 'sRIzhJv8',
+    'host' => 'db.zut.edu.pl',
     'driver' => 'pdo_mysql',
 );
 
