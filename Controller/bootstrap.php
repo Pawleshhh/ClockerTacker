@@ -15,4 +15,5 @@ $conn = array(
 );
 
 $em = EntityManager::create($conn, $config);
+$dm = \Doctrine\DBAL\DriverManager::getConnection($conn);
 ?>
