@@ -1,6 +1,6 @@
 import './StatisticsPage.css';
 import { useState } from 'react';
-import { mdiAbjadArabic, mdiAccount, mdiDeathlyHallows, mdiDeathStar, mdiStar, mdiZipDisk } from '@mdi/js';
+import {mdiAccount, mdiDeathStar, mdiStar} from '@mdi/js';
 import Icon from '@mdi/react';
 
 const StatisticsPage = () =>{

@@ -88,7 +88,7 @@ const RegisterPage = () =>{
             </div>
 
             <button className="w-100 btn btn-lg"
-                    onClick={event => handleFormSubmit(event)}>>Zarejestruj</button>
+                    onClick={event => handleFormSubmit(event)}>Zarejestruj</button>
             </form>
         </main>
     </div>
