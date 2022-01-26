@@ -9,8 +9,17 @@ require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../Model/Client.php';
 
 
-$user = $em->getRepository(User::class)->find($_REQUEST["id"]);
+$user = $em->getRepository(User::class)->find($_POST["id"]);
+$infos = $em->getRepository(UserGroupInfo::class)->findby([
+    "user" => $user->id
+]);
 
-echo $user->name;
+$result = array();
+foreach ($infos as $info)
+{
+    array_push($result, ["groupname" => $info->group->name]);
+}
+
+echo json_encode($result);
 
 ?>
