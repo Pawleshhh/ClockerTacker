@@ -6,7 +6,7 @@ import GroupsPage from './GroupsPage';
 import ClientsPage from './ClientsPage';
 import './UserPage.css';
 import Icon from '@mdi/react';
-import { mdiClock } from '@mdi/js';
+import { mdiClock, mdiDownload } from '@mdi/js';
 import { mdiAccountGroup } from '@mdi/js';
 import { mdiFormatListNumbered } from '@mdi/js';
 import { mdiAccountCash } from '@mdi/js';
@@ -40,6 +40,10 @@ const UserPage = () =>{
                         <NavLink className="nav-link" aria-current="page" to="projects">
                             <Icon className="mr-3"  path={mdiFormatListNumbered} size={1}/>
                             Projekty
+                        </NavLink>
+                        <NavLink className="nav-link" aria-current="page" to="raport">
+                            <Icon className="mr-3"  path={mdiDownload} size={1}/>
+                            Pobierz raport
                         </NavLink>
                         <hr/>
                         <NavLink className="nav-link" aria-current="page" to="/">
