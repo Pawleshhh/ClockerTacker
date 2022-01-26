@@ -1,4 +1,5 @@
 import './EntriesPage.css';
+import Entry from './Entry';
 import {mdiPlusThick} from '@mdi/js';
 import Icon from '@mdi/react';
 
@@ -36,7 +37,20 @@ const EntriesPage = () =>{
                 </div>
             </div>
             <div className="content">
-                <div className="client-wrapper">
+                <div className="table-wrapper">
+                    <table className="table table-dark table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nazwa</th>
+                                <th scope="col">Klient</th>
+                                <th scope="col">Czas</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <Entry entryName="Test1" entryClient="Test1Klient" entryTime="1"/>
+                        </tbody>
+                    </table>
                 </div>  
             </div>
         </div>

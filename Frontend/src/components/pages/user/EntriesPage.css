@@ -65,8 +65,9 @@
   width: 100%;
   background: #4f5965;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px inset;
+  padding: 4rem;
 }
-.entries-page-wrapper .content .client-wrapper {
+.entries-page-wrapper .content .entry-wrapper {
   width: 100%;
   padding: 2rem;
   display: flex;
@@ -74,4 +75,24 @@
   justify-content: space-evenly;
   align-items: flex-start;
   gap: 1rem;
+}
+.entries-page-wrapper table {
+  display: flex;
+  flex-direction: column;
+}
+.entries-page-wrapper table :not(:first-child) {
+  border-top: none;
+}
+.entries-page-wrapper tr, .entries-page-wrapper th {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+}
+.entries-page-wrapper td {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=EntriesPage.css.map */

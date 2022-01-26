@@ -20,6 +20,7 @@ const ProjectsPage = () =>{
                     </thead>
                     <tbody>
                         <Project projectName="Test1" projectClient="Test1Klient" projectTime="1" projectGroup="testgroup1"/>
+                        <Project projectName="Test2" projectClient="Test2Klient" projectTime="4" projectGroup="testgroup2"/>
                     </tbody>
                 </table>
              </div>

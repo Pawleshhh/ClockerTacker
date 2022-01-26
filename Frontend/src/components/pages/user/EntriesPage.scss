@@ -78,6 +78,7 @@
         width: 100%;
         background: lighten(#444C57, 5);
         box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px inset;
+        padding: 4rem;
 
         .entry-wrapper{
           width: 100%;
@@ -88,5 +89,27 @@
           align-items:flex-start;
           gap: 1rem;
         }
+      }
+
+      table{
+        display: flex;
+        flex-direction: column;
+
+        :not(:first-child) {
+          border-top: none;
+        }
+      }
+      tr, th{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        flex: 1;
+        justify-content: center;
+      }
+      td{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 }
