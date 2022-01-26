@@ -1,6 +1,5 @@
 <?php
 
-require_once "vendor/autoload.php";
 require_once __DIR__ . "/User.php";
 require_once __DIR__ . "/Project.php";
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,10 +23,10 @@ class Group
      */
     public $name;
 
-    // /**
-    //  * @OneToOne(targetEntity="User", cascade="all")
-    //  */
-    // public $admin;
+    /**
+     * @OneToOne(targetEntity="User", cascade="all")
+     */
+    public $admin;
 
     /**
      * @OneToMany(targetEntity="Project", mappedBy="group", cascade="all")
@@ -45,10 +44,10 @@ class Group
         $this->name = $name;
     }
 
-    // function set_admin($admin)
-    // {
-    //     $this->admin = $admin;
-    // }
+    function set_admin($admin)
+    {
+        $this->admin = $admin;
+    }
 
     function set_projects($projects)
     {

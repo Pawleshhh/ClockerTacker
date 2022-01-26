@@ -7,18 +7,36 @@ require_once __DIR__ . '/src/Model/Group.php';
 require_once __DIR__ . '/src/Model/Project.php';
 require_once __DIR__ . '/src/Model/User.php';
 require_once __DIR__ . '/src/Model/Client.php';
-require_once __DIR__ . '/src/Logic/CTManager.php';
+require_once __DIR__ . '/src/Logic/CTUserManager.php';
+require_once __DIR__ . '/src/Logic/CTGroupManager.php';
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-$user = $em->getRepository(User::class)->find(47);
+$client = $em->getRepository(Client::class)->find(31);
+$group = $em->getRepository(Group::class)->find(34);
 
-$manager = new CTManager($em, $user);
+$proj = new Project();
+$proj->set_name("test");
+$proj->set_decription("desc");
+$proj->set_group($group);
+$proj->set_client($client);
+$proj->set_start(new DateTime());
 
-foreach($manager->GetGroups() as $grp)
-{
-    echo $grp->name;
-}
+$em->persist($proj);
+$em->flush();
+
+// $user = $em->getRepository(User::class)->find(47);
+
+// $selectedGroup = $em->getRepository(Group::class)->find(34);
+
+// $groupManager = new CTGroupManager($em, $selectedGroup);
+
+// $groupManager->AddUser($user);
+
+// foreach ($groupManager->GetUsers() as $usr)
+// {
+//     echo $usr->name;
+// }
 
 // $client = new Client();
 // $client->set_name("Kramarczyk");

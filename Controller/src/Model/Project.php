@@ -1,6 +1,5 @@
 <?php
 
-require_once "vendor/autoload.php";
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -42,6 +41,16 @@ class Project
      */
     public $client;
 
+    /**
+     * @Column(type="string")
+     */
+    public $start;
+
+    /**
+     * @Column(type="string")
+     */
+    public $stop;
+
     public function __construct()
     {
         $this->entries = new ArrayCollection();
@@ -70,6 +79,16 @@ class Project
     function set_client($client)
     {
         $this->client = $client;
+    }
+
+    function set_start($start)
+    {
+        $this->start = $start;
+    }
+
+    function set_stop($stop)
+    {
+        $this->stop = $stop;
     }
 }
 
