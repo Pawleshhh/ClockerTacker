@@ -9,6 +9,7 @@ const URL_PATH = "http://localhost:80/login.php";
 
 const ClientsPage = () =>{
 
+    let formData = new FormData();
 
     const getClients = async (event) => {
         event.preventDefault();

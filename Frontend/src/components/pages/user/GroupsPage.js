@@ -2,18 +2,20 @@ import './GroupsPage.scss';
 import Group from "./Group";
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {map} from "react-bootstrap/ElementChildren";
+import {forEach} from "react-bootstrap/ElementChildren";
 
 const URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 
 const GroupsPage = () =>{
     const [groupList, setGroupList] = useState();
+    const [isLoading, setLoading] = useState(true);
 
     let success = true;
     let failMessage = "";
 
     const displayGroups = () => {
         let formData = new FormData();
+
         formData.append("id", localStorage.getItem("userId"))
         axios({
             method: "POST",
@@ -25,14 +27,14 @@ const GroupsPage = () =>{
         })
             .then(result => {
                 console.log(result.data)
-                return result.data;
+                setLoading(false);
+                setGroupList(result.data);
             })
             .catch(error => console.warn("error: ", error.message));
     }
 
-
     useEffect(() => {
-        setGroupList(displayGroups());
+        displayGroups();
     }, [])
 
     return(
@@ -46,7 +48,7 @@ const GroupsPage = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                    {groupList?.map(x => <Group>{x}</Group>)}
+                    {!isLoading ? groupList?.map(x => <Group key={Math.random()} groupName={x[0]} groupAdmin={x[1]} ></Group>) : "ładowanie danych"}
                     </tbody>
                 </table>
             </div>
