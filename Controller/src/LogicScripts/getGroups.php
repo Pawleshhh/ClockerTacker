@@ -17,7 +17,7 @@ $infos = $em->getRepository(UserGroupInfo::class)->findby([
 $result = array();
 foreach ($infos as $info)
 {
-    array_push($result, $info->group->name);
+    array_push($result, [$info->group->name, $info->group->admin->name]);
 }
 
 echo json_encode($result);

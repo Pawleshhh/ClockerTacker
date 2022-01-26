@@ -5,16 +5,16 @@ import Client from './Client';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const URL_PATH = "http://localhost:80/login.php";
+const URL_PATH = "http://localhost:80/src/LogicScripts/getClients.php";
 
 const ClientsPage = () =>{
+    const [clientList, setClientList] = useState();
 
+    const getClients = () => {
+        let formData = new FormData();
+        formData.append("id", localStorage.getItem("userId"));
 
-    const getClients = async (event) => {
-        event.preventDefault();
-        console.log(formData);
-
-        await axios({
+        axios({
             method: "POST",
             url: URL_PATH,
             headers: {
@@ -23,18 +23,16 @@ const ClientsPage = () =>{
             data: formData
         })
             .then(result => {
-               return result.data;
+                console.log(result.data)
+                setClientList(result.data);
             })
             .catch(error => console.warn("error: ", error.message));
 
     }
 
-
-    const [clients, setClients] = useState(null);
-
     useEffect(() =>{
-        setClients(getClients());
-    });
+        getClients();
+    }, []);
 
 
     return(
@@ -55,8 +53,7 @@ const ClientsPage = () =>{
             </div>
             <div className="content">
                 <div className="client-wrapper">
-                    <Client Name="Klient testowy"/> 
-                   
+                    {clientList?.map(x => <Client key={Math.random()} Name={x}></Client>)}
                 </div>  
             </div>
         </div>

@@ -8,14 +8,20 @@ require_once __DIR__ . '/../Model/Project.php';
 require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../Model/Client.php';
 
-$desc = $_POST["desc"];
 $user = $em->getRepository(User::class)->find($_POST["id"]);
 
-$entry = new Entry();
-$entry->set_description($desc);
-$entry->set_user($user);
+$entries = $em->getRepository(Entry::class)->findBy([
+    "user" => $user
+]);
 
-$em->persist($entry);
-$em->flush();
+$result = array();
+
+foreach ($entries as $entry)
+{
+//    array_push($result, [$entry->id, $entry->description, $entry->user->name, $entry->start, $entry->stop]);
+    array_push($result, [$entry->id, $entry->description, $entry->start, $entry->stop]);
+}
+
+echo json_encode($result);
 
 ?>

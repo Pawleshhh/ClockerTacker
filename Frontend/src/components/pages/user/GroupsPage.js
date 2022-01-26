@@ -2,19 +2,16 @@ import './GroupsPage.scss';
 import Group from "./Group";
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {map} from "react-bootstrap/ElementChildren";
 
 const URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 
 const GroupsPage = () =>{
     const [groupList, setGroupList] = useState([["Aplikacje internetowe", "Mateusz"], ["Aplikacje internetowe", "Mateusz"]]);
 
-    let success = true;
-    let failMessage = "";
-
-    const displayGroups = () => {
+    const getGroups = () => {
         let formData = new FormData();
-        formData.append("id", localStorage.getItem("userId"))
+        formData.append("id", localStorage.getItem("userId"));
+
         axios({
             method: "POST",
             url: URL_PATH,
@@ -25,15 +22,14 @@ const GroupsPage = () =>{
         })
             .then(result => {
                 console.log(result.data)
-                return result.data;
+                setGroupList(result.data);
             })
             .catch(error => console.warn("error: ", error.message));
     }
 
-
-    //useEffect(() => {
-        //setGroupList(displayGroups());
-    //}, [])
+    useEffect(() => {
+        getGroups();
+    }, [])
 
     return(
         <div className="groups-page-wrapper">

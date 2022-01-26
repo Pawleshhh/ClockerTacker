@@ -8,12 +8,10 @@ require_once __DIR__ . '/../Model/Project.php';
 require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../Model/Client.php';
 
-$desc = $_POST["desc"];
-$user = $em->getRepository(User::class)->find($_POST["id"]);
+$entry = $em->getRepository(Entry::class)->find($_POST["id"]);
+$stop = date('Y-m-d h:i:s', time());
 
-$entry = new Entry();
-$entry->set_description($desc);
-$entry->set_user($user);
+$entry->set_stop($stop);
 
 $em->persist($entry);
 $em->flush();
