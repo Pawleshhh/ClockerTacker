@@ -30,7 +30,8 @@ $results = $statement->fetchAll();
 foreach ($results as $account) {
     if ($_POST['email'] === $account["email"] && $_POST['pass'] === $account["password"]){
         echo json_encode([
-            "status" => true
+            "status" => true,
+            "id" => $account['userId'],
         ]);
         die();
     }

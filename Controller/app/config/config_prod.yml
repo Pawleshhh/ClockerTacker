@@ -1,5 +1,6 @@
 doctrine:
     orm:
         auto_generate_proxy_classes:  true # <- change to true
-        proxy_dir:            '%kernel.cache_dir%/doctrine/orm/Proxies'
+#        proxy_dir:            '%kernel.cache_dir%/doctrine/orm/Proxies'
+        proxy_dir:  true
         proxy_namespace:      Proxies
