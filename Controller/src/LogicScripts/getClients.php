@@ -42,9 +42,9 @@ $clients = array();
 foreach ($projects as $proj)
 {
     $client = $em->getRepository(Client::class)->find($proj->client);
-    array_push($clients, $client);
+    array_push($clients, $client->name);
 }
 
-echo json_encode($clients);
+echo json_encode(array_unique($clients));
 
 ?>
