@@ -21,17 +21,34 @@
     }
 
     .container-fluid{
-        background-color: #ff443d;
+        background-color: lighten(#444C57, 10);
         box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 6px;
+
+        input:focus{
+          outline: none;
+          border:1px solid #ff443d;
+          box-shadow: 0 0 5px  #ff443d;
+          -moz-box-shadow: 0 0 5px  #ff443d;
+          -webkit-box-shadow: 0 0 5px  #ff443d;
+        }
+
+        button:focus,
+        button:hover{
+          outline: none;
+          border:1px solid lighten(#444C57, 10);
+          box-shadow: 0 0 5px  lighten(#444C57, 10);
+          -moz-box-shadow: 0 0 5px  lighten(#444C57, 10);
+          -webkit-box-shadow: 0 0 5px  lighten(#444C57, 10);
+        }
+
     }
 
-    input:focus,
-    button:focus{
-        outline: none;
-        border:1px solid #ff443d;
-        box-shadow: 0 0 5px  #ff443d;
-        -moz-box-shadow: 0 0 5px  #ff443d;
-        -webkit-box-shadow: 0 0 5px  #ff443d;
+      button:focus{
+          outline: none;
+          border:1px solid #ff443d;
+          box-shadow: 0 0 5px  #ff443d;
+          -moz-box-shadow: 0 0 5px  #ff443d;
+          -webkit-box-shadow: 0 0 5px  #ff443d;
       }
     
       input[type="email"] {
@@ -48,10 +65,10 @@
         border-radius: 50%;
         background-color: #444C57;
         outline: none;
-        border:1px solid #ff443d;
+        border:1px solid lighten(#444C57, 5);
     
         &:hover{
-          background-color: lighten(#444C57, 10);
+          background-color: lighten(#444C57, 15);
         }
         
       }
@@ -59,7 +76,8 @@
       .content{
         flex: 1;
         width: 100%;
-        box-shadow: rgba(0, 0, 0, 0.16) 3px 3px 6px inset;
+        background: lighten(#444C57, 5);
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px inset;
 
         .client-wrapper{
           width: 100%;
