@@ -2,8 +2,39 @@ import './ClientsPage.css';
 import {mdiPlusThick} from '@mdi/js';
 import Icon from '@mdi/react';
 import Client from './Client';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const URL_PATH = "http://localhost:80/login.php";
 
 const ClientsPage = () =>{
+
+
+    const getClients = async (event) => {
+        event.preventDefault();
+        console.log(formData);
+
+        await axios({
+            method: "POST",
+            url: URL_PATH,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: formData
+        })
+            .then(result => {
+               return result.data;
+            })
+            .catch(error => console.warn("error: ", error.message));
+
+    }
+
+
+    const [clients, setClients] = useState(null);
+
+    useEffect(() =>{
+        setClients(getClients());
+    });
 
 
     return(
@@ -25,13 +56,7 @@ const ClientsPage = () =>{
             <div className="content">
                 <div className="client-wrapper">
                     <Client Name="Klient testowy"/> 
-                    <Client Name="Klient test2"/>  
-                    <Client Name="ttt"/>
-                    <Client Name="ttt"/> 
-                    <Client Name="ttt"/> 
-                    <Client Name="ttt"/> 
-                    <Client Name="ttt"/>      
-                    <Client Name="ttt"/>
+                   
                 </div>  
             </div>
         </div>
