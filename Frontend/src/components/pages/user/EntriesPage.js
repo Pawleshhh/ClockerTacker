@@ -10,11 +10,15 @@ const GROUPS_URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 const ENTRIES_URL_PATH = "http://localhost:80/src/LogicScripts/getEntries.php";
 
 const calculateDuration = (start, end) => {
-    let ms = (new Date(end) - new Date(start));
-    let days = Math.floor(ms / 86400000);
-    let hours = Math.floor((ms % 86400000) / 3600000);
-    let minutes = Math.round(((ms % 86400000) % 3600000) / 60000);
-    let seconds = Math.round(minutes / 60);
+
+    var seconds = Math.floor((Date.parse(end) - (Date.parse(start)))/1000);
+    var minutes = Math.floor(seconds/60);
+    var hours = Math.floor(minutes/60);
+    var days = Math.floor(hours/24);
+
+    hours = hours-(days*24);
+    minutes = minutes-(days*24*60)-(hours*60);
+    seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60);
 
     return days + "d " + hours + "h " + minutes + "min " + seconds + "s";
 }
@@ -64,15 +68,13 @@ const EntriesPage = () => {
     }
 
 
-
-    const timeout = () => {
-        setInterval(setCurrentTime(new Date()), 1000);
-    }
-
     useEffect(() => {
         getGroups();
         getEntries();
-        timeout();
+        setInterval(() => {
+            setCurrentTime(new Date());
+            console.log(new Date())
+        }, 1000);
     }, [])
 
 
@@ -84,13 +86,13 @@ const EntriesPage = () => {
                 <div className="row p-3">
                     <div className="col-3">
                         Grupa
-                        <select class="form-select ml-4 mr-4" aria-label="entrys">
+                        <select className="form-select ml-4 mr-4" aria-label="entrys">
                             {groupList?.map(x => <option value={x[0]}>{x[0]}</option>)}
                         </select>
                     </div>
                     <div className="col-3">
                         Projekt
-                        <select class="form-select ml-4 mr-4" aria-label="Client">
+                        <select className="form-select ml-4 mr-4" aria-label="Client">
                             <option value="1">ZUT</option>
                             <option value="2">US</option>
                             <option value="3">AGH</option>
