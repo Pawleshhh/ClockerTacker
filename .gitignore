@@ -4,8 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 /node_modules
-*.css
-*.css.map
 
 # User-specific files
 *.rsuser

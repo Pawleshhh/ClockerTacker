@@ -1,0 +1,23 @@
+.user-page-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-item > a {
+  color: #ff443d;
+}
+
+.nav-item > a:hover {
+  color: #ff7570;
+}
+
+.nav > .nav-item > .nav-link.active {
+  background-color: #ff443d;
+}
+
+.nav .nav-link {
+  display: flex;
+  align-items: center;
+}/*# sourceMappingURL=UserPage.css.map */

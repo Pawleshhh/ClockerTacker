@@ -1,4 +1,5 @@
 import './ProjectsPage.scss';
+import Project from './Project';
 
 const ProjectsPage = () =>{
 
@@ -18,20 +19,7 @@ const ProjectsPage = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Projekt testowy</td>
-                            <td>Bogaty klient</td>
-                            <td>4h</td>
-                            <td>:)</td>
-                        </tr>
-
-                        <tr>
-                            <td>Projekt testowy 2</td>
-                            <td>Biedak</td>
-                            <td>0h</td>
-                            <td>XD</td>
-                        </tr>
-
+                        <Project projectName="Test1" projectClient="Test1Klient" projectTime="1" projectGroup="testgroup1"/>
                     </tbody>
                 </table>
              </div>
