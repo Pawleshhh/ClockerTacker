@@ -7,7 +7,7 @@ import {map} from "react-bootstrap/ElementChildren";
 const URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 
 const GroupsPage = () =>{
-    const [groupList, setGroupList] = useState();
+    const [groupList, setGroupList] = useState([["Aplikacje internetowe", "Mateusz"], ["Aplikacje internetowe", "Mateusz"]]);
 
     let success = true;
     let failMessage = "";
@@ -31,9 +31,9 @@ const GroupsPage = () =>{
     }
 
 
-    useEffect(() => {
-        setGroupList(displayGroups());
-    }, [])
+    //useEffect(() => {
+        //setGroupList(displayGroups());
+    //}, [])
 
     return(
         <div className="groups-page-wrapper">
@@ -46,7 +46,7 @@ const GroupsPage = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                    {groupList?.map(x => <Group>{x}</Group>)}
+                    {groupList?.map(x => <Group key={Math.random()} groupName={x[0]} groupAdmin={x[1]} ></Group>)}
                     </tbody>
                 </table>
             </div>
