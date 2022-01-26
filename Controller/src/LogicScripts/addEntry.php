@@ -8,9 +8,9 @@ require_once __DIR__ . '/../Model/Project.php';
 require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../Model/Client.php';
 
-$project = $em->getRepository(Project::class)->find($_REQUEST["projectid"]);
-$desc = $_REQUEST["desc"];
-$user = $em->getRepository(User::class)->find($_REQUEST["userid"]);
+$project = $em->getRepository(Project::class)->find($_POST["projectid"]);
+$desc = $_POST["desc"];
+$user = $em->getRepository(User::class)->find($_POST["userid"]);
 
 $entry = new Entry();
 $entry->set_description($desc);
@@ -19,6 +19,8 @@ $entry->set_user($user);
 $em->persist($entry);
 $em->flush();
 
-echo $entry->id;
+$result = array("id" => $entry->id);
+
+echo json_encode($result);
 
 ?>

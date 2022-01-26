@@ -8,8 +8,8 @@ require_once __DIR__ . '/../Model/Project.php';
 require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../Model/Client.php';
 
-$user = $em->getRepository(User::class)->find($_REQUEST["userid"]);
-$group = $em->getRepository(Group::class)->find($_REQUEST["groupid"]);
+$user = $em->getRepository(User::class)->find($_POST["userid"]);
+$group = $em->getRepository(Group::class)->find($_POST["groupid"]);
 
 $grpInfo = new UserGroupInfo();
 $grpInfo->set_user($user);
@@ -18,6 +18,8 @@ $grpInfo->set_group($group);
 $em->persist($grpInfo);
 $em->flush();
 
-echo $user->id . "," . $group->id
+$result = array("user" => $grpInfo->user->id, "group" => $grpInfo->group->id);
+
+echo json_encode($result);
 
 ?>

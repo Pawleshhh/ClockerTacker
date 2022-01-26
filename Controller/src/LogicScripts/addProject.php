@@ -8,12 +8,12 @@ require_once __DIR__ . '/../Model/Project.php';
 require_once __DIR__ . '/../Model/User.php';
 require_once __DIR__ . '/../Model/Client.php';
 
-$group = $em->getRepository(Group::class)->find($_REQUEST["groupid"]);
-$name = $_REQUEST["name"];
-$desc = $_REQUEST["desc"];
-$client = $em->getRepository(Client::class)->find($_REQUEST["clientid"]);
-$start = $_REQUEST["start"];
-$stop = $_REQUEST["stop"];
+$group = $em->getRepository(Group::class)->find($_POST["groupid"]);
+$name = $_POST["name"];
+$desc = $_POST["desc"];
+$client = $em->getRepository(Client::class)->find($_POST["clientid"]);
+$start = $_POST["start"];
+$stop = $_POST["stop"];
 
 $project = new Project();
 $project->set_group($group);
@@ -26,6 +26,8 @@ $project->set_stop($stop);
 $em->persist($project);
 $em->flush();
 
-echo $project->id;
+$result = array("id" => $project->id, "name" => $project->name);
+
+echo json_encode($result);
 
 ?>
