@@ -26,7 +26,8 @@ const LoginPage = () => {
         })
             .then(result => {
                 if (result.data.status) {
-                    console.log("user screen here we go");
+                    localStorage.setItem("userId", result.data.id);
+                    window.location.href = '/user';
                 }
                 else {
                     success = false;

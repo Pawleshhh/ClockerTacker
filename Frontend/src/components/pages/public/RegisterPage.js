@@ -26,7 +26,7 @@ const RegisterPage = () =>{
         })
             .then(result => {
                 if (result.data.status) {
-                    console.log("user screen here we go");
+                    window.location.href = '/signin';
                 }
                 else {
                     success = false;
