@@ -13,7 +13,7 @@ const Entry = (props) => {
             <td>{props.entryDescription}</td>
             <td>{props.entryDuration}</td>
             <td>{props.entryStart}</td>
-            {isStarted ?
+            {!isStarted ?
                 <td>
                     <button>
                         <Icon onClick={() => setStarted(!isStarted)} path={isStarted ? mdiPlay : mdiStop} size={1}/>

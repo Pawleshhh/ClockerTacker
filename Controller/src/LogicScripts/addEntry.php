@@ -1,5 +1,8 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Headers: Content-Type');
+
 require_once __DIR__ . '/../../bootstrap.php';
 require_once __DIR__ . '/../Model/UserGroupInfo.php';
 require_once __DIR__ . '/../Model/Entry.php';
@@ -14,6 +17,9 @@ $user = $em->getRepository(User::class)->find($_POST["id"]);
 $entry = new Entry();
 $entry->set_description($desc);
 $entry->set_user($user);
+
+$start = date('Y-m-d H:i:s', time());
+$entry->set_start($start);
 
 $em->persist($entry);
 $em->flush();

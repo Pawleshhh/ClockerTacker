@@ -8,6 +8,7 @@ import Group from "./Group";
 
 const GROUPS_URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 const ENTRIES_URL_PATH = "http://localhost:80/src/LogicScripts/getEntries.php";
+const ADD_ENTRY_URL_PATH = "http://localhost:80/src/LogicScripts/addEntry.php";
 
 const calculateDuration = (start, end) => {
 
@@ -27,6 +28,8 @@ const EntriesPage = () => {
     const [groupList, setGroupList] = useState();
     const [entries, setEntry] = useState();
     const [currentTime, setCurrentTime] = useState(new Date());
+
+    const [formData, setFormData] = useState({});
 
     const getGroups = () => {
         let formData = new FormData();
@@ -68,12 +71,47 @@ const EntriesPage = () => {
     }
 
 
+    const handleChange = (event, input) => {
+        let value = event.target.value;
+        setFormData({
+            ...formData,
+            [input]: value
+        });
+    }
+
+    const handleNewEntry = (event) => {
+        let data = new FormData();
+        data.append("desc", formData["desc"]);
+        data.append("id", localStorage.getItem("userId"));
+
+        console.log(data);
+
+        axios({
+            method: "POST",
+            url: ADD_ENTRY_URL_PATH,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: data
+        })
+            .then(result => {
+                console.log(result)
+                // getEntries();
+        })
+            .catch(error => console.warn("error: ", error.message));
+    }
+
+
+    const timeout = () => {
+        setInterval(setCurrentTime(new Date()), 1000);
+    }
+
     useEffect(() => {
         getGroups();
         getEntries();
         setInterval(() => {
             setCurrentTime(new Date());
-            console.log(new Date())
+            // console.log(new Date())
         }, 1000);
     }, [])
 
@@ -86,13 +124,15 @@ const EntriesPage = () => {
                 <div className="row p-3">
                     <div className="col-3">
                         Grupa
-                        <select className="form-select ml-4 mr-4" aria-label="entrys">
+                        <select class="form-select ml-4 mr-4" aria-label="Group"
+                                onChange={event => handleChange(event, "group")}>
                             {groupList?.map(x => <option value={x[0]}>{x[0]}</option>)}
                         </select>
                     </div>
                     <div className="col-3">
                         Projekt
-                        <select className="form-select ml-4 mr-4" aria-label="Client">
+                        <select class="form-select ml-4 mr-4" aria-label="Project"
+                                onChange={event => handleChange(event, "project")}>
                             <option value="1">ZUT</option>
                             <option value="2">US</option>
                             <option value="3">AGH</option>
@@ -100,10 +140,11 @@ const EntriesPage = () => {
                     </div>
                     <div className="col-3">
                         Wpisy
-                        <input className="form-control ml-4" placeholder="Wykonywane zadanie"/>
+                        <input className="form-control ml-4" placeholder="Opis zadania"
+                        onChange={event => handleChange(event, "desc")}/>
                     </div>
                     <div className="col-3">
-                        <button>
+                        <button onClick={event => handleNewEntry(event)}>
                             <Icon path={mdiPlusThick} size={1}/>
                         </button>
                     </div>
@@ -128,8 +169,8 @@ const EntriesPage = () => {
                                 entryStart={x[2]}
                                 entryEnd={x[3]}
                                 entryDuration={
-                                    x[3] === "" ? calculateDuration(x[2], currentTime):
-                                    calculateDuration(x[2], x[3])
+                                    x[3] === null ? calculateDuration(x[2], currentTime) :
+                                        calculateDuration(x[2], x[3])
                                 }
                             />)}
                         </tbody>
