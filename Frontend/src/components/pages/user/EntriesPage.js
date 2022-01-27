@@ -88,9 +88,6 @@ const EntriesPage = () => {
     useEffect(() => {
         getGroups();
         getEntries();
-        setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
     }, [])
 
 
@@ -100,14 +97,14 @@ const EntriesPage = () => {
                 <div className="row p-3">
                     <div className="col-3">
                         Grupa
-                        <select class="form-select ml-4 mr-4" aria-label="Group"
+                        <select className="form-select ml-4 mr-4" aria-label="Group"
                                 onChange={event => handleChange(event, "group")}>
                             {groupList?.map(x => <option value={x[0]}>{x[0]}</option>)}
                         </select>
                     </div>
                     <div className="col-3">
                         Projekt
-                        <select class="form-select ml-4 mr-4" aria-label="Project"
+                        <select className="form-select ml-4 mr-4" aria-label="Project"
                                 onChange={event => handleChange(event, "project")}>
                             <option value="1">ZUT</option>
                             <option value="2">US</option>
