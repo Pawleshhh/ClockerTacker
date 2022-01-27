@@ -96,14 +96,9 @@ const EntriesPage = () => {
         })
             .then(result => {
                 console.log(result)
-                // getEntries();
+                getEntries();
         })
             .catch(error => console.warn("error: ", error.message));
-    }
-
-
-    const timeout = () => {
-        setInterval(setCurrentTime(new Date()), 1000);
     }
 
     useEffect(() => {
@@ -114,8 +109,6 @@ const EntriesPage = () => {
             // console.log(new Date())
         }, 1000);
     }, [])
-
-
 
 
     return (
@@ -165,6 +158,7 @@ const EntriesPage = () => {
                         {entries?.map(x =>
                             <Entry
                                 key={Math.random()}
+                                entryId={x[0]}
                                 entryDescription={x[1]}
                                 entryStart={x[2]}
                                 entryEnd={x[3]}

@@ -27,7 +27,7 @@ const LoginPage = () => {
             .then(result => {
                 if (result.data.status) {
                     localStorage.setItem("userId", result.data.id);
-                    window.location.href = '/user';
+                    window.location.href = '/user/entries';
                 }
                 else {
                     success = false;
