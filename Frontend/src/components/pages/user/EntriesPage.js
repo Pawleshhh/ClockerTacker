@@ -4,29 +4,16 @@ import {mdiPlusThick} from '@mdi/js';
 import Icon from '@mdi/react';
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Group from "./Group";
 
 const GROUPS_URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 const ENTRIES_URL_PATH = "http://localhost:80/src/LogicScripts/getEntries.php";
 const ADD_ENTRY_URL_PATH = "http://localhost:80/src/LogicScripts/addEntry.php";
 
-const calculateDuration = (start, end) => {
 
-    var seconds = Math.floor((Date.parse(end) - (Date.parse(start)))/1000);
-    var minutes = Math.floor(seconds/60);
-    var hours = Math.floor(minutes/60);
-    var days = Math.floor(hours/24);
-
-    hours = hours-(days*24);
-    minutes = minutes-(days*24*60)-(hours*60);
-    seconds = seconds-(days*24*60*60)-(hours*60*60)-(minutes*60);
-
-    return days + "d " + hours + "h " + minutes + "min " + seconds + "s";
-}
 
 const EntriesPage = () => {
     const [groupList, setGroupList] = useState();
-    const [entries, setEntry] = useState();
+    const [entries, setEntry] = useState([["1", "test1", "2022-01-26 22:11:00", null], ["2", "test2", "2022-01-26 22:11:00", "2022-01-26 23:11:00"]]);
     const [currentTime, setCurrentTime] = useState(new Date());
 
     const [formData, setFormData] = useState({});
@@ -83,9 +70,6 @@ const EntriesPage = () => {
         let data = new FormData();
         data.append("desc", formData["desc"]);
         data.append("id", localStorage.getItem("userId"));
-
-        console.log(data);
-
         axios({
             method: "POST",
             url: ADD_ENTRY_URL_PATH,
@@ -106,7 +90,6 @@ const EntriesPage = () => {
         getEntries();
         setInterval(() => {
             setCurrentTime(new Date());
-            // console.log(new Date())
         }, 1000);
     }, [])
 
@@ -162,10 +145,6 @@ const EntriesPage = () => {
                                 entryDescription={x[1]}
                                 entryStart={x[2]}
                                 entryEnd={x[3]}
-                                entryDuration={
-                                    x[3] === null ? calculateDuration(x[2], currentTime) :
-                                        calculateDuration(x[2], x[3])
-                                }
                             />)}
                         </tbody>
                     </table>
