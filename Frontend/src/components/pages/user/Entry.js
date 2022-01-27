@@ -24,6 +24,7 @@ const Entry = (props) => {
     }
 
     const [stopped, setStopped] = useState(false);
+    const [stoppedTime, setStoppedTime] = useState(0);
     const [duration, setDuration] = useState(0);
 
     const stopTimer = (entryId) => {
@@ -44,12 +45,18 @@ const Entry = (props) => {
             })
             .catch(error => console.warn("error: ", error.message));
     }
-
+    var interval;
     useEffect(() => {
-        setInterval(() => {
-            setDuration(calculateDuration(props.entryStart, new Date()));
-        }, 1000);
-    }, [])
+        if(!stopped){
+            interval = setInterval(() => {
+                setDuration(calculateDuration(props.entryStart, new Date()));
+            }, 1000);
+        }
+        else{
+            clearInterval(interval);
+            setDuration(calculateDuration(props.entryStart, stoppedTime));
+        }
+    }, [duration, stoppedTime, stopped])
 
     return (
         <tr id={props.entryId}>
@@ -60,11 +67,11 @@ const Entry = (props) => {
                 props.entryEnd === null && !stopped ?
                 <td>
                     <button>
-                        <Icon onClick={() => stopTimer(props.entryId)} path={mdiStop} size={1}/>
+                        <Icon onClick={() => {setStopped(true); setStoppedTime(new Date())}} /*onClick={() => stopTimer(props.entryId)}*/ path={mdiStop} size={1}/>
                     </button>
                 </td>
                 :
-                <td>test: {props.entryEnd}</td>
+                <td>{props.entryEnd}</td>
             }
         </tr>
     )
