@@ -11,9 +11,48 @@ import { mdiAccountGroup } from '@mdi/js';
 import { mdiFormatListNumbered } from '@mdi/js';
 import { mdiAccountCash } from '@mdi/js';
 import { mdiLogout } from '@mdi/js';
+import {Button} from "react-bootstrap";
+import axios from "axios";
+
+const GET_CSV_URL_PATH = "http://localhost:80/src/LogicScripts/generateCsv.php";
 
 const UserPage = () =>{
+    const getCSVReport = () => {
+        let formData = new FormData();
+        formData.append("id", localStorage.getItem("userId"));
 
+        axios({
+            method: "POST",
+            url: GET_CSV_URL_PATH,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: formData
+        })
+            .then(result => {
+                console.log(result.data)
+
+                let file = new Blob([result.data], {type: "csv"});
+                let a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+
+                a.href = url;
+                a.download = "clockertracker_report.csv";
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function () {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+
+            })
+            .catch(error => console.warn("error: ", error.message));
+    }
+
+    const logout = () => {
+        localStorage.removeItem("userId");
+        window.location = "/";
+    }
 
     return(
         <div className="user-page-wrapper">
@@ -41,15 +80,16 @@ const UserPage = () =>{
                             <Icon className="mr-3"  path={mdiFormatListNumbered} size={1}/>
                             Projekty
                         </NavLink>
-                        <NavLink className="nav-link" aria-current="page" to="raport">
+                        <button onClick={getCSVReport} className="nav-link" aria-current="page" to="raport">
                             <Icon className="mr-3"  path={mdiDownload} size={1}/>
                             Pobierz raport
-                        </NavLink>
+                        </button>
+
                         <hr/>
-                        <NavLink className="nav-link" aria-current="page" to="/">
+                        <button onClick={logout} className="nav-link" aria-current="page" to="/">
                             <Icon className="mr-3"  path={mdiLogout} size={1}/>
                             Wyloguj
-                        </NavLink>
+                        </button>
                     </li>
                 </ul>
             </div>

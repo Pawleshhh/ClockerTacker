@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 const URL_PATH = "http://localhost:80/src/LogicScripts/getGroups.php";
 
 const GroupsPage = () =>{
-    const [groupList, setGroupList] = useState([["Aplikacje internetowe", "Mateusz"], ["Aplikacje internetowe", "Mateusz"]]);
+    const [groupList, setGroupList] = useState([]);
 
     const getGroups = () => {
         let formData = new FormData();

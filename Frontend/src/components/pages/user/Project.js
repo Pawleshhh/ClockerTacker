@@ -6,9 +6,9 @@ const Project= (props) =>{
     return(
         <tr>
             <td>{props.projectName}</td>
-            <td>{props.projectClient}</td>
-            <td>{props.projectTime} h</td>
+            <td>{props.projectDescription}</td>
             <td>{props.projectGroup}</td>
+            <td>{props.projectClient}</td>
         </tr>
     )
 
